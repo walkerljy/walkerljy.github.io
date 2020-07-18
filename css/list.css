@@ -1,0 +1,61 @@
+/*清除原样式*/
+* {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+/*一级菜单样式*/
+#nav {
+    width: 1000px;
+    height: 40px;
+    margin: 0px auto;
+    background: #f00;
+    font-size: 18px;
+    font-family: 微软雅黑;
+}
+
+    #nav ul li {
+        float: left;
+        /*包含块*/
+        position:relative;
+    }
+
+        #nav ul li a {
+            display: block;
+            width: 160px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            color: #fff;
+        }
+
+            #nav ul li a:hover {
+                color: #ffd800;
+                background: #970606;
+            }
+/*二级菜单样式*/
+        #nav ul li ul {
+        position:absolute;
+        top:40px;
+        left:0px;
+        display:none;
+        }
+            #nav ul li ul li {
+            float:none;
+            }
+            #nav ul li ul li a{
+                background:#f00;
+                border-top:1px solid #ccc;
+            }
+            /*一级菜单悬停时二级菜单可见*/
+        #nav ul li:hover ul {
+        display:block;
+        }
