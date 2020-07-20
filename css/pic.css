@@ -1,0 +1,15 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+}
+
+#pic {
+      top: 90px;
+      z-index: -1;
+      width: 100%;
+      height: 220px;
+      position:absolute;
+}
+    #pic #sh{margin:0 auto;width:70%;height:200px;vertical-align:middle;position: relative;}
+    #pic #sh img {text-align:center;height: 200px;width: auto;margin: 0 auto;}

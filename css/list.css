@@ -46,6 +46,7 @@ a {
             }
 /*二级菜单样式*/
         #nav ul li ul {
+        z-index: 3;
         position:absolute;
         width: 100%;
         top:40px;
