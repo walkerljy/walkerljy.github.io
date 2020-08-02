@@ -47,7 +47,7 @@
     margin: 0 auto;
 }
     #maintext #textp {
-        top:40px;
+        margin-top:40px;
         width:100%;
         float:left;
         font-size: 18px;
