@@ -34,3 +34,8 @@
       top: 50%; /*偏移*/
       margin-top: -8px;
     }
+#titbel {
+    margin-top:340px;
+    font-size: 20px;
+    font-family: 微软雅黑;
+}
