@@ -44,6 +44,11 @@
 #maintext {
     width:80%;
     height:auto;
-    text-align:center;
     margin: 0 auto;
 }
+    #maintext #textp {
+        width:100%;
+        float:left;
+        font-size: 18px;
+        font-family: 微软雅黑;
+    }
