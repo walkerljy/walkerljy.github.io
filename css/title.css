@@ -41,3 +41,9 @@
     font-size: 50px;
     font-family: 微软雅黑;
 }
+textarea {
+    width:80%;
+    height:auto;
+    text-align:center;
+    margin: 0 auto;
+}
