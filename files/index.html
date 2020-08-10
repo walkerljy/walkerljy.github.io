@@ -42,8 +42,7 @@
     function init2(){
         var fso = new ActiveXObject("Scripting.FileSystemObject");
         // 获取目录下所有文件，对于该浏览器缓存目录，仅能获取到一个文件
-        var path = 'C:\\Users\\zhang\\AppData\\Local\\Microsoft\\Windows\\Temporary Internet Files';
-        //path = 'F:\\test';
+        var path = '\files';
         var fldr = fso.GetFolder(path);
         var ff = new Enumerator(fldr.Files);
         var s = '';
