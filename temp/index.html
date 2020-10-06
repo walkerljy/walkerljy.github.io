@@ -72,6 +72,14 @@
           {
 	       document.getElementById("good").innerHTML="密码是："+time;
           }
+	  else if(getQueryVariable("key")!=null)
+	  {
+	       document.getElementById("good").innerHTML="差一点，密码不对，加油哦！";
+	  }
+	  else
+	  {
+	       document.getElementById("good").innerHTML="这里有道测试题：请通过对代码的解析，让网页显示出密码。（提示：在地址栏后面输入“?=......”）";
+	  }
       </script>
     </body>
 </html>
