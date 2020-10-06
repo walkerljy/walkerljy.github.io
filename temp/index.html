@@ -56,30 +56,26 @@
           </div>
       </div>
       <script>
-	 var time=new Date().getMinutes();
-	 time=time+2;
-         function getQueryVariable(variable)
-         {
-               var query = window.location.search.substring(1);
-               var vars = query.split("&");
-               for (var i=0;i<vars.length;i++) {
-                     var pair = vars[i].split("=");
-                     if(pair[0] == variable){return pair[1];}
-               }
-               return(false);
-          }
-          if(getQueryVariable("key")=="verysoon")
-          {
-	       document.getElementById("good").innerHTML="密码是："+time;
-          }
-	  else if(getQueryVariable("key")!="")
-	  {
-	       document.getElementById("good").innerHTML="差一点，密码不对，加油哦！";
-	  }
-	  else
-	  {
-	       document.getElementById("good").innerHTML="这里有道测试题：请通过对代码的解析，让网页显示出密码。（提示：在地址栏后面输入“?=......”）";
-	  }
+	      var time = new Date().getMinutes();
+	      time = time + 2;
+	      function getQueryVariable(variable) {
+	         var query = window.location.search.substring(1);
+ 	         var vars = query.split("&");
+ 	         for (var i = 0; i < vars.length; i++) {
+   	           var pair = vars[i].split("=");
+   	           if (pair[0] == variable) {
+  	              return pair[1];
+ 	           }
+ 	         }
+	         return (false);
+	      }
+	      if (getQueryVariable("key") == "verysoon") {
+ 	         document.getElementById("good").innerHTML = "密码是：" + time;
+	      } else if (getQueryVariable("key") != "") {
+    	         document.getElementById("good").innerHTML = "差一点，密码不对，加油哦！";
+	      } else {
+	         document.getElementById("good").innerHTML = "这里有道测试题：请通过对代码的解析，让网页显示出密码。（提示：在地址栏后面输入“?=......”）";
+	      }
       </script>
     </body>
 </html>
