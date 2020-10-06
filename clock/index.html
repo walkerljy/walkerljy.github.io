@@ -6,21 +6,21 @@
         <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
       <style>
         .clocks {
-          height: 500px;
+          height: 300px;
           margin: 25px auto;
           position: relative;
-          width: 500px;
+          width: 300px;
         }
       </style>
     </head>
     <body>
         <div class="clocks">
-            <canvas id="canvas" width="500" height="500"></canvas>
+            <canvas id="canvas" width="300" height="300"></canvas>
         </div>
 	<script>
 // inner variables
 var canvas, ctx;
-var clockRadius = 250;
+var clockRadius = 150px;
 var clockImage;
 
 // draw functions :
@@ -44,13 +44,13 @@ function drawScene() { // main drawScene function
     ctx.save();
 
     // draw clock image (as background)
-    ctx.drawImage(clockImage, 0, 0, 500, 500);
+    ctx.drawImage(clockImage, 0, 0, 300, 300);
 
     ctx.translate(canvas.width / 2, canvas.height / 2);
     ctx.beginPath();
 
     // draw numbers
-    ctx.font = '36px Arial';
+    ctx.font = '20px Arial';
     ctx.fillStyle = '#000';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
