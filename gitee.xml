@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  <!-- Created By http://www.zhetao.com/sitemapcreator,  URLs: 16 Generated at: 2022-04-19 08:14:23 -->
+
+  <url>
+    <loc>https://walkerljy.gitee.io/</loc>
+    <priority>1.00</priority>
+  </url>
+
+  <url>
+    <loc>https://walkerljy.gitee.io/files/share/xkwy</loc>
+    <priority>1.00</priority>
+  </url>
+
+  <url>
+    <loc>https://walkerljy.gitee.io/me</loc>
+    <priority>1.00</priority>
+  </url>
+
+  <url>
+    <loc>https://walkerljy.gitee.io/program/index.html</loc>
+    <priority>1.00</priority>
+  </url>
+
+  <url>
+    <loc>https://walkerljy.gitee.io/program/c++</loc>
+    <priority>1.00</priority>
+  </url>
+
+  <url>
+    <loc>https://walkerljy.gitee.io/program/scratch</loc>
+    <priority>1.00</priority>
+  </url>
+
+  <url>
+    <loc>https://walkerljy.gitee.io/program/python</loc>
+    <priority>1.00</priority>
+  </url>
+
+  <url>
+    <loc>https://walkerljy.gitee.io/program/html</loc>
+    <priority>1.00</priority>
+  </url>
+
+  <url>
+    <loc>https://walkerljy.gitee.io/program/project</loc>
+    <priority>1.00</priority>
+  </url>
+
+  <url>
+    <loc>https://walkerljy.gitee.io/files/index.html</loc>
+    <priority>1.00</priority>
+  </url>
+
+  <url>
+    <loc>https://walkerljy.gitee.io/files/links</loc>
+    <priority>0.99</priority>
+  </url>
+
+  <url>
+    <loc>https://walkerljy.gitee.io/files/share</loc>
+    <priority>0.99</priority>
+  </url>
+
+  <url>
+    <loc>https://walkerljy.gitee.io/temp/index.html</loc>
+    <priority>0.91</priority>
+  </url>
+
+  <url>
+    <loc>https://walkerljy.gitee.io/program</loc>
+    <priority>0.88</priority>
+  </url>
+
+  <url>
+    <loc>https://walkerljy.gitee.io/files</loc>
+    <priority>0.86</priority>
+  </url>
+
+  <url>
+    <loc>https://walkerljy.gitee.io/temp</loc>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://walkerljy.gitee.io/me/myfriend.html</loc>
+    <priority>0.80</priority>
+  </url>
+
+</urlset>
