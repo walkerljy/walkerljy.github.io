@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>翻译二十遍</title>
+</head>
+
+<body>
+    <label for="input">请输入中文：</label>
+    <input type="text" id="input">
+    <button onclick="translateTwentyTimes()">翻译二十遍</button>
+    <br>
+    <label for="output">翻译结果：</label>
+    <span id="output"></span>
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="./md5.js"></script>
+    <script>
+        async function my_trans(text) {
+            var appid = '20231217001913448';
+            var key = '8DQwoRXsmtvYTkFvoaBJ';
+            var salt = (new Date).getTime();
+            var query = text;
+            // 多个query可以用\n连接  如 query='apple\norange\nbanana\npear'
+            var from = 'est';
+            var to = 'zh';
+            var str1 = appid + query + salt + key;
+            var sign = MD5(str1);
+            await $.ajax({
+                url: 'http://api.fanyi.baidu.com/api/trans/vip/translate',
+                type: 'get',
+                dataType: 'jsonp',
+                data: {
+                    q: query,
+                    appid: appid,
+                    salt: salt,
+                    from: 'zh',
+                    to: 'est',
+                    sign: sign
+                },
+                success: function (data) {
+                    //console.log(data);
+                    console.log(data.trans_result[0].dst);
+                    text = data.trans_result[0].dst;
+                }
+            });
+            query = text;
+            salt = (new Date).getTime();
+            str1 = appid + query + salt + key;
+            sign = MD5(str1);
+            await $.ajax({
+                url: 'http://api.fanyi.baidu.com/api/trans/vip/translate',
+                type: 'get',
+                dataType: 'jsonp',
+                data: {
+                    q: query,
+                    appid: appid,
+                    salt: salt,
+                    from: 'est',
+                    to: 'zh',
+                    sign: sign
+                },
+                success: function (data) {
+                    //console.log(data);
+                    console.log(data.trans_result[0].dst);
+                    text = data.trans_result[0].dst;
+                }
+            });
+            return text;
+        }
+        async function translateTwentyTimes() {
+            let text = document.getElementById('input').value;
+            var optText = "";
+            for (let i = 0; i < 10; i++) {
+                text = await my_trans(text);
+                optText=optText+"\n翻译第"+2*(i+1)+"次："+text;
+                document.getElementById('output').innerText = optText;
+            }
+        }
+    </script>
+</body>
+
+</html>
