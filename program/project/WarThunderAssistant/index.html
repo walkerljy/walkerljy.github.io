@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全真飞行辅助 - 演示与教程</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background-color: #0f1419;
+            color: #e6e6e6;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #2a2f35;
+        }
+        
+        h1 {
+            color: #00a1d6;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        
+        .subtitle {
+            color: #a0a0a0;
+            font-size: 1.1rem;
+        }
+        
+        .video-section {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        @media (min-width: 992px) {
+            .video-section {
+                flex-direction: row;
+            }
+        }
+        
+        .video-player-container {
+            flex: 2;
+            background-color: #1a1f25;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .video-tabs {
+            display: flex;
+            background-color: #151a20;
+            border-bottom: 1px solid #2a2f35;
+        }
+        
+        .video-tab {
+            flex: 1;
+            padding: 18px 20px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #a0a0a0;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .video-tab.active {
+            color: #00a1d6;
+            border-bottom: 3px solid #00a1d6;
+            background-color: rgba(0, 161, 214, 0.05);
+        }
+        
+        .video-tab:hover:not(.active) {
+            background-color: #1a2028;
+            color: #d0d0d0;
+        }
+        
+        .video-wrapper {
+            position: relative;
+            padding-top: 56.25%; /* 16:9 宽高比 */
+            background-color: #000;
+        }
+        
+        .video-player {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            outline: none;
+        }
+        
+        .video-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: #151a20;
+            border-top: 1px solid #2a2f35;
+        }
+        
+        .play-pause-btn, .fullscreen-btn {
+            background-color: #00a1d6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.2s;
+        }
+        
+        .play-pause-btn:hover, .fullscreen-btn:hover {
+            background-color: #0087b3;
+        }
+        
+        .play-pause-btn:active, .fullscreen-btn:active {
+            transform: translateY(1px);
+        }
+        
+        .video-info-sidebar {
+            flex: 1;
+            background-color: #1a1f25;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .video-info-sidebar h2 {
+            color: #00a1d6;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #2a2f35;
+            font-size: 1.5rem;
+        }
+        
+        .video-description {
+            margin-bottom: 25px;
+        }
+        
+        .video-description h3 {
+            color: #e6e6e6;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+        
+        .video-description p {
+            color: #a0a0a0;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+        
+        .video-details {
+            background-color: #151a20;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        
+        .video-details h3 {
+            color: #e6e6e6;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #2a2f35;
+        }
+        
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+        
+        .detail-label {
+            color: #a0a0a0;
+        }
+        
+        .detail-value {
+            color: #e6e6e6;
+            font-weight: 500;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #2a2f35;
+            color: #6a6a6a;
+            font-size: 0.9rem;
+        }
+        
+        .fullscreen-active {
+            background-color: #ff6b6b;
+        }
+        
+        .fullscreen-active:hover {
+            background-color: #ff5252;
+        }
+        
+        /* 全屏样式 */
+        :fullscreen .video-player-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: #000;
+        }
+        
+        :fullscreen .video-wrapper {
+            flex: 1;
+            padding-top: 0;
+        }
+        
+        :fullscreen .video-info-sidebar,
+        :fullscreen .video-tabs,
+        :fullscreen .video-controls {
+            display: none;
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .video-controls {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .video-controls > div {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-video"></i>全真飞行辅助</h1>
+            <p class="subtitle">演示与教程视频</p>
+        </header>
+        
+        <main class="video-section">
+            <div class="video-player-container">
+                <div class="video-tabs">
+                    <div class="video-tab active" data-video="1.mp4" data-title="演示视频" data-description="这是一个产品功能演示视频，展示了主要功能的使用方法和效果。">
+                        <i class="fas fa-play-circle"></i> 演示视频
+                    </div>
+                    <div class="video-tab" data-video="2.mp4" data-title="教程视频" data-description="这是一个详细的使用教程视频，包含步骤讲解和操作技巧。">
+                        <i class="fas fa-graduation-cap"></i> 教程视频
+                    </div>
+                </div>
+                
+                <div class="video-wrapper">
+                    <video class="video-player" id="videoPlayer" controls>
+                        <source src="1.mp4" type="video/mp4">
+                        您的浏览器不支持视频播放，请升级浏览器。
+                    </video>
+                </div>
+                
+                <div class="video-controls">
+                    <div>
+                        <button class="play-pause-btn" id="playPauseBtn">
+                            <i class="fas fa-pause"></i> 暂停
+                        </button>
+                    </div>
+                    <div>
+                        <button class="fullscreen-btn" id="fullscreenBtn">
+                            <i class="fas fa-expand"></i> 全屏
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="video-info-sidebar">
+                <h2><i class="fas fa-info-circle"></i> 视频简介</h2>
+                
+                <div class="video-description">
+                    <h3 id="videoTitle">演示视频</h3>
+                    <p id="videoDescription">这里是简介</p>
+                </div>
+                
+                <div class="video-details">
+                    <h3><i class="fas fa-list-alt"></i> 视频详情</h3>
+                    <div class="detail-item">
+                        <span class="detail-label">视频格式:</span>
+                        <span class="detail-value">MP4 (H.264)</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">分辨率:</span>
+                        <span class="detail-value" id="resolutionInfo">1920x1080</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">时长:</span>
+                        <span class="detail-value" id="durationInfo">5:30</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">文件大小:</span>
+                        <span class="detail-value" id="sizeInfo">85 MB</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">上传时间:</span>
+                        <span class="detail-value">2026年3月22日</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>© 2026 walkerljy</p>
+        </footer>
+    </div>
+
+    <script>
+        // 获取DOM元素
+        const videoPlayer = document.getElementById('videoPlayer');
+        const videoTabs = document.querySelectorAll('.video-tab');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const fullscreenBtn = document.getElementById('fullscreenBtn');
+        const videoTitle = document.getElementById('videoTitle');
+        const videoDescription = document.getElementById('videoDescription');
+        const resolutionInfo = document.getElementById('resolutionInfo');
+        const durationInfo = document.getElementById('durationInfo');
+        const sizeInfo = document.getElementById('sizeInfo');
+        
+        // 视频数据
+        const videoData = {
+            '1.mp4': {
+                title: '演示视频',
+                description: '下载地址：https://www.123865.com/s/wz7Qvd-fiPOd?pwd=6666',
+                resolution: '1920x1080',
+                duration: '5:30',
+                size: '85 MB'
+            },
+            '2.mp4': {
+                title: '教程视频',
+                description: '下载地址：https://www.123865.com/s/wz7Qvd-fiPOd?pwd=6666',
+                resolution: '1920x1080',
+                duration: '12:45',
+                size: '210 MB'
+            }
+        };
+        
+        // 初始化视频
+        function initVideo() {
+            // 设置初始视频信息
+            updateVideoInfo('1.mp4');
+            
+            // 视频加载后更新时长信息
+            videoPlayer.addEventListener('loadedmetadata', function() {
+                const duration = videoPlayer.duration;
+                const minutes = Math.floor(duration / 60);
+                const seconds = Math.floor(duration % 60);
+                durationInfo.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            });
+        }
+        
+        // 切换视频标签
+        videoTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                // 移除所有标签的active类
+                videoTabs.forEach(t => t.classList.remove('active'));
+                // 为当前标签添加active类
+                this.classList.add('active');
+                
+                // 获取视频文件
+                const videoFile = this.getAttribute('data-video');
+                
+                // 切换视频源
+                videoPlayer.src = videoFile;
+                videoPlayer.load();
+                
+                // 更新视频信息
+                updateVideoInfo(videoFile);
+                
+                // 更新播放/暂停按钮状态
+                updatePlayPauseButton();
+            });
+        });
+        
+        // 更新视频信息
+        function updateVideoInfo(videoFile) {
+            const data = videoData[videoFile];
+            if (data) {
+                videoTitle.textContent = data.title;
+                videoDescription.textContent = data.description;
+                resolutionInfo.textContent = data.resolution;
+                durationInfo.textContent = data.duration;
+                sizeInfo.textContent = data.size;
+            }
+        }
+        
+        // 播放/暂停控制
+        playPauseBtn.addEventListener('click', function() {
+            if (videoPlayer.paused) {
+                videoPlayer.play();
+            } else {
+                videoPlayer.pause();
+            }
+            updatePlayPauseButton();
+        });
+        
+        // 更新播放/暂停按钮
+        function updatePlayPauseButton() {
+            if (videoPlayer.paused) {
+                playPauseBtn.innerHTML = '<i class="fas fa-play"></i> 播放';
+            } else {
+                playPauseBtn.innerHTML = '<i class="fas fa-pause"></i> 暂停';
+            }
+        }
+        
+        // 视频播放状态变化时更新按钮
+        videoPlayer.addEventListener('play', updatePlayPauseButton);
+        videoPlayer.addEventListener('pause', updatePlayPauseButton);
+        
+        // 全屏控制
+        fullscreenBtn.addEventListener('click', function() {
+            if (!document.fullscreenElement) {
+                // 进入全屏
+                const container = document.querySelector('.video-player-container');
+                if (container.requestFullscreen) {
+                    container.requestFullscreen();
+                } else if (container.webkitRequestFullscreen) {
+                    container.webkitRequestFullscreen();
+                } else if (container.msRequestFullscreen) {
+                    container.msRequestFullscreen();
+                }
+                
+                // 更新全屏按钮
+                fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i> 退出全屏';
+                fullscreenBtn.classList.add('fullscreen-active');
+            } else {
+                // 退出全屏
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+                
+                // 更新全屏按钮
+                fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i> 全屏';
+                fullscreenBtn.classList.remove('fullscreen-active');
+            }
+        });
+        
+        // 监听全屏变化
+        document.addEventListener('fullscreenchange', handleFullscreenChange);
+        document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+        document.addEventListener('msfullscreenchange', handleFullscreenChange);
+        
+        function handleFullscreenChange() {
+            if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
+                // 已退出全屏
+                fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i> 全屏';
+                fullscreenBtn.classList.remove('fullscreen-active');
+            }
+        }
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', initVideo);
+        
+        // 模拟视频加载完成事件
+        setTimeout(() => {
+            // 模拟视频元数据加载
+            if (videoPlayer.readyState >= 1) {
+                const duration = videoPlayer.duration || 330; // 5:30 默认值
+                const minutes = Math.floor(duration / 60);
+                const seconds = Math.floor(duration % 60);
+                durationInfo.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            }
+        }, 500);
+    </script>
+</body>
+</html>
