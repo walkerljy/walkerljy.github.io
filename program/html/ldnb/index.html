@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>鲁导牛逼！9.19在华为云上开发</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; }
+
+    body {
+      background: linear-gradient(180deg, #1a0a2e 0%, #3d0f3d 55%, #6b1a2a 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+
+    .page {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 20px;
+    }
+
+    /* ===== 艺术字标题 ===== */
+    .title {
+      display: flex;
+      align-items: flex-end;
+    }
+    .title span {
+      display: inline-block;
+      font-size: 84px;
+      font-weight: 900;
+      line-height: 1;
+      margin: 0 4px;
+      -webkit-text-stroke: 3px #ffffff;
+      paint-order: stroke;
+      text-shadow:
+        4px 4px 0 rgba(0, 0, 0, 0.28),
+        8px 8px 20px rgba(0, 0, 0, 0.45),
+        0 0 30px rgba(255, 255, 255, 0.35);
+      animation: float 2.2s ease-in-out infinite;
+    }
+    .t1 { color: #ff5a3c; animation-delay: 0s; }
+    .t2 { color: #ff9a3c; animation-delay: 0.15s; }
+    .t3 { color: #ffd60a; animation-delay: 0.3s; }
+    .t4 { color: #ff4da6; animation-delay: 0.45s; }
+    .t5 { color: #ffffff; animation-delay: 0.6s; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-16px); }
+    }
+
+    /* ===== 旋转跳跃的小鹿 ===== */
+    .deer {
+      width: 220px;
+      height: 220px;
+      margin: 60px 0 40px;
+      animation: jumpspin 3.2s ease-in-out infinite;
+    }
+    .deer svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.45));
+    }
+
+    @keyframes jumpspin {
+      0%   { transform: translateY(0) rotate(0deg) scale(1); }
+      20%  { transform: translateY(-52px) rotate(72deg) scale(1.06); }
+      40%  { transform: translateY(0) rotate(144deg) scale(1); }
+      60%  { transform: translateY(-34px) rotate(216deg) scale(1.04); }
+      80%  { transform: translateY(0) rotate(288deg) scale(1); }
+      100% { transform: translateY(0) rotate(360deg) scale(1); }
+    }
+
+    /* ===== 底部小字 ===== */
+    .footer {
+      font-size: 16px;
+      letter-spacing: 1px;
+      color: rgba(255, 255, 255, 0.85);
+    }
+    .footer .cloud {
+      color: #ff5a3c;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="title">
+      <span class="t1">鲁</span>
+      <span class="t2">导</span>
+      <span class="t3">牛</span>
+      <span class="t4">逼</span>
+      <span class="t5">！</span>
+    </div>
+
+    <div class="deer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240">
+        <g stroke="#7c4a1e" stroke-width="10" stroke-linecap="round" fill="none">
+          <path d="M 94 80 Q 86 54 70 34"/>
+          <path d="M 90 60 Q 100 44 112 32"/>
+          <path d="M 146 80 Q 154 54 170 34"/>
+          <path d="M 150 60 Q 140 44 128 32"/>
+        </g>
+        <ellipse cx="60" cy="112" rx="20" ry="32" fill="#c8844a" transform="rotate(-28 60 112)"/>
+        <ellipse cx="60" cy="112" rx="11" ry="21" fill="#f3b98a" transform="rotate(-28 60 112)"/>
+        <ellipse cx="180" cy="112" rx="20" ry="32" fill="#c8844a" transform="rotate(28 180 112)"/>
+        <ellipse cx="180" cy="112" rx="11" ry="21" fill="#f3b98a" transform="rotate(28 180 112)"/>
+        <ellipse cx="120" cy="140" rx="72" ry="68" fill="#d98c4f"/>
+        <ellipse cx="120" cy="176" rx="46" ry="36" fill="#f3d9a4"/>
+        <circle cx="93" cy="130" r="11" fill="#2b1a10"/>
+        <circle cx="147" cy="130" r="11" fill="#2b1a10"/>
+        <circle cx="96" cy="126" r="4" fill="#ffffff"/>
+        <circle cx="150" cy="126" r="4" fill="#ffffff"/>
+        <circle cx="79" cy="156" r="9" fill="#f08080" opacity="0.55"/>
+        <circle cx="161" cy="156" r="9" fill="#f08080" opacity="0.55"/>
+        <ellipse cx="120" cy="176" rx="14" ry="11" fill="#d84a52"/>
+        <ellipse cx="115" cy="172" rx="4" ry="3" fill="#ffffff" opacity="0.7"/>
+        <path d="M 120 186 Q 111 197 102 191" stroke="#5b3a22" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <path d="M 120 186 Q 129 197 138 191" stroke="#5b3a22" stroke-width="4" fill="none" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <div class="footer"><span class="cloud">9.19</span>在华为云上开发</div>
+  </div>
+</body>
+</html>
